@@ -1,4 +1,4 @@
 {
-  "example_mod.configuration.client": "client",
-  "example_mod.configuration.example": "example"
+  "villager_brain_config.configuration.client": "client",
+  "villager_brain_config.configuration.example": "example"
 }

@@ -1,4 +1,4 @@
-package toni.examplemod;
+package joshie.vbc;
 
 import me.fallenbreath.conditionalmixin.api.mixin.RestrictiveMixinConfigPlugin;
 

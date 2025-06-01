@@ -8,7 +8,7 @@ blahaj {
 		// versionedAccessWideners()
 	}
 	setup {
-		txnilib("1.0.23")
+//		txnilib("1.0.23")
 		forgeConfig()
 		conditionalMixin()
 
