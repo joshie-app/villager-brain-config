@@ -1,2 +1,25 @@
 accessWidener v2 named
 accessible class net/minecraft/client/gui/Gui$HeartType
+accessible field net/minecraft/world/level/pathfinder/SwimNodeEvaluator allowBreaching Z
+accessible field net/minecraft/world/level/pathfinder/NodeEvaluator mob Lnet/minecraft/world/entity/Mob;
+accessible field net/minecraft/world/level/pathfinder/NodeEvaluator currentContext Lnet/minecraft/world/level/pathfinder/PathfindingContext;
+accessible method net/minecraft/world/level/pathfinder/NodeEvaluator getNode (III)Lnet/minecraft/world/level/pathfinder/Node;
+accessible method net/minecraft/world/level/pathfinder/WalkNodeEvaluator getFloorLevel (Lnet/minecraft/core/BlockPos;)D
+accessible method net/minecraft/world/level/pathfinder/SwimNodeEvaluator getCachedBlockType (III)Lnet/minecraft/world/level/pathfinder/PathType;
+accessible method net/minecraft/world/level/pathfinder/WalkNodeEvaluator findAcceptedNode (IIIIDLnet/minecraft/core/Direction;Lnet/minecraft/world/level/pathfinder/PathType;)Lnet/minecraft/world/level/pathfinder/Node;
+accessible field net/minecraft/world/level/pathfinder/WalkNodeEvaluator reusableNeighbors [Lnet/minecraft/world/level/pathfinder/Node;
+accessible method net/minecraft/world/level/pathfinder/WalkNodeEvaluator isNeighborValid (Lnet/minecraft/world/level/pathfinder/Node;Lnet/minecraft/world/level/pathfinder/Node;)Z
+accessible method net/minecraft/world/level/pathfinder/WalkNodeEvaluator isDiagonalValid (Lnet/minecraft/world/level/pathfinder/Node;)Z
+accessible field net/minecraft/world/level/pathfinder/NodeEvaluator entityWidth I
+accessible method net/minecraft/world/level/pathfinder/WalkNodeEvaluator getNodeAndUpdateCostToMax (IIILnet/minecraft/world/level/pathfinder/PathType;F)Lnet/minecraft/world/level/pathfinder/Node;
+accessible method net/minecraft/world/level/pathfinder/WalkNodeEvaluator doesBlockHavePartialCollision (Lnet/minecraft/world/level/pathfinder/PathType;)Z
+accessible method net/minecraft/world/level/pathfinder/WalkNodeEvaluator getClosedNode (IIILnet/minecraft/world/level/pathfinder/PathType;)Lnet/minecraft/world/level/pathfinder/Node;
+accessible method net/minecraft/world/level/pathfinder/WalkNodeEvaluator isAmphibious ()Z
+accessible method net/minecraft/world/level/pathfinder/WalkNodeEvaluator tryJumpOn (IIIIDLnet/minecraft/core/Direction;Lnet/minecraft/world/level/pathfinder/PathType;Lnet/minecraft/core/BlockPos$MutableBlockPos;)Lnet/minecraft/world/level/pathfinder/Node;
+accessible method net/minecraft/world/level/pathfinder/WalkNodeEvaluator canReachWithoutCollision (Lnet/minecraft/world/level/pathfinder/Node;)Z
+accessible method net/minecraft/world/level/pathfinder/WalkNodeEvaluator getMobJumpHeight ()D
+accessible method net/minecraft/world/level/pathfinder/WalkNodeEvaluator getBlockedNode (III)Lnet/minecraft/world/level/pathfinder/Node;
+accessible method net/minecraft/world/level/pathfinder/WalkNodeEvaluator getCachedPathType (III)Lnet/minecraft/world/level/pathfinder/PathType;
+accessible method net/minecraft/world/level/pathfinder/WalkNodeEvaluator tryFindFirstNonWaterBelow (IIILnet/minecraft/world/level/pathfinder/Node;)Lnet/minecraft/world/level/pathfinder/Node;
+accessible method net/minecraft/world/level/pathfinder/WalkNodeEvaluator tryFindFirstGroundNodeBelow (III)Lnet/minecraft/world/level/pathfinder/Node;
+accessible method net/minecraft/world/level/pathfinder/WalkNodeEvaluator hasCollisions (Lnet/minecraft/world/phys/AABB;)Z

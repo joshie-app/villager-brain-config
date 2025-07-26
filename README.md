@@ -48,17 +48,6 @@ After first run, the mod will generate a `villager-brain-config.json` file in th
 
 - Minecraft 1.21.1 planned (more versions down the road)
 - Fabric and NeoForge support
+- Supports modded villager professions and any modded blocks or tags
 
 ---
-
-## Installation
-
- Coming soon
-
-
----
-
-## License
-
-Attribution-NonCommercial 4.0 International
- - You are free to share and adapt this project, as long as it is credited and *non-commercial* use
