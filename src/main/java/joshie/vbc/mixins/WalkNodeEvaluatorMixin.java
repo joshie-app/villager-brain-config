@@ -7,8 +7,6 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.level.pathfinder.Node;
-import net.minecraft.world.level.pathfinder.PathType;
-import net.minecraft.world.level.pathfinder.PathfindingContext;
 import net.minecraft.world.level.pathfinder.WalkNodeEvaluator;
 import net.minecraft.world.phys.AABB;
 import org.spongepowered.asm.mixin.Mixin;
@@ -20,6 +18,17 @@ import static joshie.vbc.VillagerBrainConfig.LOGGER;
 import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
+
+#if mc >= 205
+import net.minecraft.world.level.pathfinder.PathType;
+import net.minecraft.world.level.pathfinder.PathfindingContext;
+#endif
+
+#if mc < 205
+import net.minecraft.world.level.pathfinder.BlockPathTypes;
+#endif
+
+
 
 @Mixin(WalkNodeEvaluator.class)
 public abstract class WalkNodeEvaluatorMixin {
@@ -192,7 +201,11 @@ public abstract class WalkNodeEvaluatorMixin {
         WalkNodeEvaluator evaluator = (WalkNodeEvaluator) (Object) this;
         y--;
 
+        #if mc >= 205
+        while(y > evaluator.mob.level().getMinY()) {
+        #else
         while(y > evaluator.mob.level().getMinBuildHeight()) {
+        #endif
             PathType pathType = evaluator.getCachedPathType(x, y, z);
             if (pathType != PathType.WATER) {
                 cir.setReturnValue(node);
@@ -211,7 +224,11 @@ public abstract class WalkNodeEvaluatorMixin {
     @Inject(method = "tryFindFirstGroundNodeBelow", at = @At("HEAD"), cancellable = true)
     private void modifyTryFindFirstGroundNodeBelow(int x, int y, int z, CallbackInfoReturnable<Node> cir) {
         WalkNodeEvaluator evaluator = (WalkNodeEvaluator) (Object) this;
+        #if mc >= 205
+        for(int i = y - 1; i >= evaluator.mob.level().getMinY(); --i) {
+        #else
         for(int i = y - 1; i >= evaluator.mob.level().getMinBuildHeight(); --i) {
+        #endif
             if (y - i > evaluator.mob.getMaxFallDistance()) {
                 cir.setReturnValue(evaluator.getBlockedNode(x, i, z));
                 return;
