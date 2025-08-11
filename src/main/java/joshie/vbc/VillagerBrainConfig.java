@@ -17,17 +17,10 @@ import static joshie.vbc.config.ConfigManager.loadConfig;
     import net.fabricmc.api.ClientModInitializer;
     import net.fabricmc.api.ModInitializer;
     #if mc >= 215
-    import fuzs.forgeconfigapiport.fabric.api.v5.ConfigRegistry;
-    import fuzs.forgeconfigapiport.fabric.api.v5.client.ConfigScreenFactoryRegistry;
-    import net.neoforged.neoforge.client.gui.ConfigurationScreen;
     #elif after_21_1
-    import fuzs.forgeconfigapiport.fabric.api.neoforge.v4.NeoForgeConfigRegistry;
-    import fuzs.forgeconfigapiport.fabric.api.neoforge.v4.client.ConfigScreenFactoryRegistry;
-    import net.neoforged.neoforge.client.gui.ConfigurationScreen;
     #endif
 
     #if current_20_1
-    import fuzs.forgeconfigapiport.api.config.v2.ForgeConfigRegistry;
     #endif
 #endif
 
@@ -117,7 +110,6 @@ public class VillagerBrainConfig #if FABRIC implements ModInitializer, ClientMod
     public void onInitializeClient() {
         #if AFTER_21_1
             #if FABRIC
-            ConfigScreenFactoryRegistry.INSTANCE.register(VillagerBrainConfig.ID, ConfigurationScreen::new);
             #endif
         #endif
     }
