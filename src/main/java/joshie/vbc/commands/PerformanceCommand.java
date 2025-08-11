@@ -15,7 +15,7 @@ import net.minecraft.network.chat.Component;
 
 public class PerformanceCommand {
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
-        dispatcher.register(Commands.literal("vbc")
+        dispatcher.register(Commands.literal("villager_brain_config")
                 .then(Commands.literal("performance")
                         .requires(source -> source.hasPermission(2))
                         .executes(ctx -> {

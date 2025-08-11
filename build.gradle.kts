@@ -9,7 +9,7 @@ blahaj {
 	}
 	setup {
 //		txnilib("1.0.23")
-		forgeConfig()
+//		forgeConfig()
 //		conditionalMixin()
 
 		/* access Gradle's DependencyHandler

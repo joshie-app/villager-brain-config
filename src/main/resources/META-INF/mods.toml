@@ -1,4 +1,4 @@
-modLoader = "javafml"
+cmodLoader = "javafml"
 loaderVersion="[1,)"
 license="${license}"
 showAsResourcePack=false

@@ -19,15 +19,20 @@ public class ProfessionCache {
         String professionId = ref != null ? ref.get() : null;
         
         if (professionId == null) {
-            #if mc <=211
+            #if mc <= 211
             professionId = villager.level().registryAccess()
                     .registryOrThrow(net.minecraft.core.registries.Registries.VILLAGER_PROFESSION)
                     .getKey(villager.getVillagerData().getProfession())
                     .toString();
-            #else
+            #elif mc <= 214
             professionId = villager.level().registryAccess()
                     .lookupOrThrow(net.minecraft.core.registries.Registries.VILLAGER_PROFESSION)
                     .getKey(villager.getVillagerData().getProfession())
+                    .toString();
+            #elif mc > 214
+            professionId = villager.level().registryAccess()
+                    .lookupOrThrow(net.minecraft.core.registries.Registries.VILLAGER_PROFESSION)
+                    .getKey(villager.getVillagerData().profession().value())
                     .toString();
             #endif
             professionCache.put(villager, new WeakReference<>(professionId));

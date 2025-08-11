@@ -63,7 +63,7 @@ public class ConfigManager {
     }
 
     public static void processAvoidEntries(Level level) {
-        #if mc < 211
+        #if mc <= 211
         Registry<Block> blockRegistry = level.registryAccess().registryOrThrow(Registries.BLOCK);
         #else
         Registry<Block> blockRegistry = level.registryAccess().lookupOrThrow(Registries.BLOCK);
@@ -91,7 +91,7 @@ public class ConfigManager {
                     p.isTag = false;
                     ResourceLocation blockId = ResourceLocation.tryParse(avoid.block);
                     if (blockId != null && blockRegistry.containsKey(blockId)) {
-                        #if mc < 211
+                        #if mc <= 211
                         p.block = blockRegistry.get(blockId);
                         #else
                         if (blockRegistry.get(blockId).isPresent()) {
@@ -488,7 +488,7 @@ public class ConfigManager {
 
         ResourceLocation resourceLocation = ResourceLocation.fromNamespaceAndPath(parts[0].substring(1), parts[1]);
         Block block = null;
-        #if mc < 211
+        #if mc <= 211
         block = BuiltInRegistries.BLOCK.get(resourceLocation);
         #else
         if (BuiltInRegistries.BLOCK.get(resourceLocation).isPresent()) {

@@ -166,7 +166,7 @@ public abstract class WalkNodeEvaluatorMixin {
 
         if (f < 0) {
             pathType2 = PathType.BLOCKED;
-            verticalDeltaLimit = 0;
+//            verticalDeltaLimit = 0;
         }
 
         if (f >= 0.0F) {
@@ -201,7 +201,7 @@ public abstract class WalkNodeEvaluatorMixin {
         WalkNodeEvaluator evaluator = (WalkNodeEvaluator) (Object) this;
         y--;
 
-        #if mc >= 205
+        #if mc > 211
         while(y > evaluator.mob.level().getMinY()) {
         #else
         while(y > evaluator.mob.level().getMinBuildHeight()) {
@@ -224,7 +224,7 @@ public abstract class WalkNodeEvaluatorMixin {
     @Inject(method = "tryFindFirstGroundNodeBelow", at = @At("HEAD"), cancellable = true)
     private void modifyTryFindFirstGroundNodeBelow(int x, int y, int z, CallbackInfoReturnable<Node> cir) {
         WalkNodeEvaluator evaluator = (WalkNodeEvaluator) (Object) this;
-        #if mc >= 205
+        #if mc > 211
         for(int i = y - 1; i >= evaluator.mob.level().getMinY(); --i) {
         #else
         for(int i = y - 1; i >= evaluator.mob.level().getMinBuildHeight(); --i) {
@@ -296,17 +296,18 @@ public abstract class WalkNodeEvaluatorMixin {
     @Inject(method = "isDiagonalValid(Lnet/minecraft/world/level/pathfinder/Node;Lnet/minecraft/world/level/pathfinder/Node;Lnet/minecraft/world/level/pathfinder/Node;)Z", at = @At("RETURN"), cancellable = true)
     private void modifyIsDiagonalValid(Node root, Node xNode, Node zNode, CallbackInfoReturnable<Boolean> cir) {
         WalkNodeEvaluator evaluator = (WalkNodeEvaluator) (Object) this;
-
         if (evaluator.mob instanceof Villager) {
-            if (zNode != null && xNode != null && zNode.y <= root.y && xNode.y <= root.y) {
+            if (zNode != null && xNode != null) {
+                zNode = evaluator.getNode(zNode.x, root.y, zNode.z);
+                xNode = evaluator.getNode(xNode.x, root.y, xNode.z);
                 if (xNode.type != PathType.WALKABLE_DOOR && zNode.type != PathType.WALKABLE_DOOR) {
                     boolean flag = zNode.type == PathType.FENCE && xNode.type == PathType.FENCE && (double) (evaluator.mob.getBbWidth()) < 0.5;
 
                     float malusZ = MalusUtils.maybeVillagerMalus(evaluator, zNode.type, evaluator.mob, zNode.x, zNode.y, zNode.z); // B
                     float malusX = MalusUtils.maybeVillagerMalus(evaluator, xNode.type, evaluator.mob, xNode.x, xNode.y, xNode.z); // A
 
-                    boolean zCondition = (zNode.y < root.y || malusZ >= 0.0F || flag);
-                    boolean xCondition = (xNode.y < root.y || malusX >= 0.0F || flag);
+                    boolean zCondition = (malusZ >= 0.0F) && zNode.y == root.y ;
+                    boolean xCondition = (malusX >= 0.0F) && xNode.y == root.y;
                     boolean result = zCondition && xCondition;
                     cir.setReturnValue(result);
                     return;

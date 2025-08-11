@@ -10,7 +10,7 @@ public class PerformanceTracker {
     private static final AtomicInteger penaltyLookupCount = new AtomicInteger(0);
     
     private static final boolean TRACKING_ENABLED =
-        Boolean.parseBoolean(System.getProperty("vbc.performance.tracking", "false"));
+        Boolean.parseBoolean(System.getProperty("villager_brain_config.performance.tracking", "false"));
     
     public static void recordMalusCall(long nanoTime) {
         if (TRACKING_ENABLED) {
